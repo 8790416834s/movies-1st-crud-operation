@@ -41,7 +41,21 @@ app.get("/movies/", async (request, response) => {
     SELECT * FROM movie
     ORDER BY movie_id;`;
   const movieArray = await db.all(getMoviesQuery);
-  response.send(movieArray.map((eachmovie) => convertDbObjectToResponseObject));
+  response.send(
+    movieArray.map((eachmovie) => convertDbObjectToResponseObject(eachmovie))
+  );
+});
+
+//GET INDIVIDUAL
+app.get("/movies/:movieId/", async (request, response) => {
+  const { movieId } = request.params;
+  const getMovieQuery = `
+    SELECT * FROM movie
+    WHERE movie_id = ${movieId};`;
+  const movieArray = await db.all(getMovieQuery);
+  response.send(
+    movieArray.map((eachmovie) => convertDbObjectToResponseObject(eachmovie))
+  );
 });
 
 //POST

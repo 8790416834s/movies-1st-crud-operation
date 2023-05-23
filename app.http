@@ -4,11 +4,14 @@ GET http://localhost:3000/
 GET http://localhost:3000/movies/ 
 ###
 
+GET http://localhost:3000/movies/58/
+###
+
 POST http://localhost:3000/movies/
 Content-Type: application/json
 
 {
-    "directorId": 82,
+    "directorId": 46,
     "movieName": "Avatar",
     "leadActor": "chin-chang"
 }
