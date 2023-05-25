@@ -32,6 +32,7 @@ convertDbObjectToResponseObject = (dbObject) => {
     directorId: dbObject.director_id,
     movieName: dbObject.movie_name,
     leadActor: dbObject.lead_actor,
+    directorName: dbObject.director_name,
   };
 };
 
@@ -96,7 +97,7 @@ app.delete("/movies/:movieId/", async (request, response) => {
 //GET ALL DIRECTORS
 app.get("/directors/", async (request, response) => {
   const getDirectorsQuery = `
-    SELECT director_id, director_name FROM director
+    SELECT * FROM director
     ORDER BY director_id;`;
   const directorsArray = await db.all(getDirectorsQuery);
   response.send(
